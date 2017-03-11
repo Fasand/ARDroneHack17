@@ -9,15 +9,13 @@ import java.util.ArrayList;
 
 public class SpyStart {
 
-    public static void start(ArrayList<Location> locations){
-
-
-
+    public static double[][] start(ArrayList<Location> locations){
+        double[][] allinfo = new double[locations.size()][2];
+        for (int i=1;i<locations.size();i++){
+            double[] info = Direction.TurnTime(locations.get(i-1).getX(),locations.get(i-1).getY(),locations.get(i).getX(),locations.get(i).getY());
+            allinfo[i-1][0] = info[0];
+            allinfo[i-1][1] = info[1];
+        }
+        return allinfo;
     }
-    //on button press
-    //getLocation from drawing
-    //for (int i=0;i<loc.length;i++){
-    //   roll = Direction.Move()[0];
-    //    pitch = Direction.Move()[1];
-   // }
 }
