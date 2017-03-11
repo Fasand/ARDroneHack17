@@ -29,7 +29,7 @@ public class TuplesToLocations {
 
     public static boolean addPhoto( float x, float y , ArrayList<Tuple> pointsOnDisplay){
 
-        final float offset = 5.0f;
+        final float offset = 10.0f;
         float dX, dY;
 
         for(int i = 0; i < pointsOnDisplay.size(); ++i){
