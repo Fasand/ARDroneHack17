@@ -136,7 +136,8 @@ public class DrawingView extends View {
                                         Toast.makeText(getContext(), "Select photo points!", Toast.LENGTH_SHORT).show();
                                         drawPaint.setColor(new Color().argb(255,255,0,0));
                                         drawPaint.setStrokeWidth(30);
-                                        canvasPaint.setStyle(Paint.Style.FILL);
+                                        drawPaint.setStyle(Paint.Style.FILL);
+                                   //     canvasPaint.setStyle(Paint.Style.FILL);
                                         takingPhotoPoints = true;
 
                                         /*Handler handler = new Handler();
