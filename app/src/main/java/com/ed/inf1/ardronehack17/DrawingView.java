@@ -104,10 +104,10 @@ public class DrawingView extends View {
                         drawPath.moveTo(touchX, touchY);
 
                     if(takingPhotoPoints)
-                        if( true /*TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay)*/){
+                        if( TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay)){
 
                             drawPath.addCircle(touchX, touchY, 0.3f, Path.Direction.CW);
-
+                            drawPath.setFillType(Path.FillType.EVEN_ODD);
 
                         }
 

@@ -25,6 +25,8 @@ public class TuplesToLocations {
         maxX = size.x;
         maxY = size.y;
 
+        locations = new ArrayList<Location>();
+
     }
 
     public static boolean addPhoto( float x, float y , ArrayList<Tuple> pointsOnDisplay){
