@@ -9,22 +9,17 @@ import java.util.ArrayList;
 
 public class SpyStart {
 
-    private static float[][] locationFloats;
+    public static ArrayList<Location> directions;
 
-    public static float[][] getLocationFloats(){
-
-        return locationFloats;
-
-    }
-
-    public static void start(ArrayList<Location> locations){
-
-        float[][] allinfo = new float[locations.size()][2];
-        for (int i=1;i<locations.size();i++){
-            float[] info = Direction.TurnTime(locations.get(i-1).getX(),locations.get(i-1).getY(),locations.get(i).getX(),locations.get(i).getY());
-            allinfo[i-1][0] = info[0];
-            allinfo[i-1][1] = info[1];
+    public static void start(ArrayList<Location> locations) {
+        directions = new ArrayList<>();
+        for (int i = 1; i < locations.size(); i++) {
+            float[] lengthangle = Direction.TurnTime(locations.get(i - 1).getX(), locations.get(i - 1).getY(), locations.get(i).getX(), locations.get(i).getY());
+            directions.get(i - 1).setX(lengthangle[0]);
+            directions.get(i - 1).setY(lengthangle[1]);
+            directions.get(i - 1).takePhoto(locations.get(i - 1).shouldTakePhoto());
         }
-        locationFloats = allinfo;
+
     }
+    public static ArrayList<Location> getDirections() { return directions;}
 }
