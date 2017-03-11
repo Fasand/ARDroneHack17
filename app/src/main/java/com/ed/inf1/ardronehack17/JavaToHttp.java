@@ -12,7 +12,7 @@ public class JavaToHttp {
         try
 
         {
-            String lengthangle = URLEncoder.encode("sdf", "UTF-8");
+            String lengthangle = URLEncoder.encode("lol", "UTF-8");
             URL url = new URL("www.example.com");
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
