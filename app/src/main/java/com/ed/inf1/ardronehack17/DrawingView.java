@@ -39,7 +39,7 @@ public class DrawingView extends View {
 
     private Handler handler;
     private Runnable runnable;
-    private ArrayList<Tuple> pointsOnDisplay;
+    private static ArrayList<Tuple> pointsOnDisplay;
 
     private boolean drawingAllowed;
     private boolean takingPhotoPoints;
@@ -55,6 +55,12 @@ public class DrawingView extends View {
         setupDrawing();
     }
 
+    public static ArrayList<Tuple> getTuples(){
+
+        return pointsOnDisplay;
+
+    }
+
     private void setupDrawing(){
 
         handler = new Handler();
@@ -62,7 +68,7 @@ public class DrawingView extends View {
             public void run() {
 
                 takingPhotoPoints = false;
-                SpyStart.start(TuplesToLocations.getLocations());
+                SpyStart.start( TuplesToLocations.getCorrectedLocations());
             }
         };
 

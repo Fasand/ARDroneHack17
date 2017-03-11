@@ -32,12 +32,12 @@ public class Location {
 
     }
 
-    public Location(float xi, float yi, boolean takePhotoi) throws Exception {
+    public Location(float xi, float yi, boolean takePhotoi){
         if(isWithinBounds(xi, yi)) {
             x = xi;
             y = yi;
             takePhoto = takePhotoi;
-        } else throw new Exception("Location out of bounds! x="+xi+"; y="+yi);
+        }
     }
 
     public float getX() {
@@ -53,9 +53,6 @@ public class Location {
     }
 
     private boolean isWithinBounds(float xi, float yi) {
-        if(xi > MAX_BOUND || xi < MIN_BOUND || yi > MAX_BOUND || yi < MIN_BOUND) {
-            return false;
-        }
-        return true;
+        return !(xi > MAX_BOUND || xi < MIN_BOUND || yi > MAX_BOUND || yi < MIN_BOUND);
     }
 }

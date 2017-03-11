@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                setContentView(R.layout.drawing_layout);
-//
+
             }
 
 

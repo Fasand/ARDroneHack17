@@ -30,6 +30,7 @@ public class TuplesToLocations {
     private static int maxX;
     private static int maxY;
     private static ArrayList<Location> locations;
+    private static ArrayList<Location> correctedLocations;
 
     public static ArrayList<Location> getLocations(){
         return locations;
@@ -98,6 +99,28 @@ public class TuplesToLocations {
 
         }
 
+    }
+
+    public static ArrayList<Location> getCorrectedLocations(){
+//THIS IS SHITTY CODE
+        correctedLocations = new ArrayList<Location>();
+        ArrayList<Tuple> tuples = DrawingView.getTuples();
+
+        for(int i = 0; i < tuples.size(); ++i){
+
+            for(int i2 = 0; i2 < locations.size(); ++i2){
+
+                if (tuples.get(i).x == locations.get(i2).getX() && tuples.get(i).y == locations.get(i2).getY()){
+
+                    correctedLocations.add(new Location(tuples.get(i).x,tuples.get(i).y, locations.get(i2).shouldTakePhoto() ));
+
+                }
+
+            }
+        }
+
+
+        return correctedLocations;
     }
 
     private static float absToRelX(float x){
