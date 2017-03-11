@@ -79,8 +79,7 @@ public class DrawingView extends View {
                     drawCanvas.drawPath(drawPath, drawPaint);
                     drawPath.reset();
 
-                    findViewById(R.id.start_fly_button).setVisibility(VISIBLE);
-                    findViewById(R.id.try_again_button).setVisibility(VISIBLE);
+
                     this.drawingAllowed = false;
 
                     break;
