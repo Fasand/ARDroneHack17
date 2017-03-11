@@ -85,7 +85,7 @@ public class TuplesToLocations {
 
         for(int i = 0; i < locs.size(); ++i){
 
-            if(i % 20 == 0){
+            if(i % 100 == 0){
 
                 try {
                     locations.add(new Location(absToRelX(locs.get(i).x), absToRelY(locs.get(i).y)));
