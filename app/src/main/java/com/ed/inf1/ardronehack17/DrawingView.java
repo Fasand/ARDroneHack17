@@ -68,7 +68,7 @@ public class DrawingView extends View {
             float touchY = event.getY();
 
             switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_DOWN://
 
                     drawPath.moveTo(touchX, touchY);
                     break;
