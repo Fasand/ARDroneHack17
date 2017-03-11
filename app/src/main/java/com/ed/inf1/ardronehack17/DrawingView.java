@@ -1,5 +1,7 @@
 package com.ed.inf1.ardronehack17;
 
+import android.app.AlertDialog;
+import  android.content.DialogInterface;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -78,6 +80,22 @@ public class DrawingView extends View {
                 case MotionEvent.ACTION_UP:
                     drawCanvas.drawPath(drawPath, drawPaint);
                     drawPath.reset();
+
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("What to do next")
+                            .setMessage("Do you want to add photo points?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
 
 
                     this.drawingAllowed = false;
