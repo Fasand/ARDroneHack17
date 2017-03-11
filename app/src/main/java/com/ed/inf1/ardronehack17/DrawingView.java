@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 
 public class DrawingView extends View {
 
+    private boolean drawingAllowed;
+
     private Path drawPath;
     private Paint drawPaint, canvasPaint;
     private int paintColor = 0xFF660000;
@@ -23,6 +25,8 @@ public class DrawingView extends View {
     }
 
     private void setupDrawing(){
+
+        drawingAllowed = true;
 
         drawPath = new Path();
         drawPaint = new Paint();
@@ -57,11 +61,15 @@ public class DrawingView extends View {
         @Override
         public boolean onTouchEvent(MotionEvent event) {
 
+            if(!drawingAllowed)
+                return false;
+
             float touchX = event.getX();
             float touchY = event.getY();
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+
                     drawPath.moveTo(touchX, touchY);
                     break;
                 case MotionEvent.ACTION_MOVE:
@@ -70,6 +78,11 @@ public class DrawingView extends View {
                 case MotionEvent.ACTION_UP:
                     drawCanvas.drawPath(drawPath, drawPaint);
                     drawPath.reset();
+
+                    findViewById(R.id.start_fly_button).setVisibility(VISIBLE);
+                    findViewById(R.id.try_again_button).setVisibility(VISIBLE);
+                    this.drawingAllowed = false;
+
                     break;
                 default:
                     return false;
