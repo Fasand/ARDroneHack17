@@ -26,6 +26,12 @@ public class Location {
         } else throw new Exception("Location out of bounds!");
     }
 
+    public void takePhoto(){
+
+        takePhoto = true;
+
+    }
+
     public Location(float xi, float yi, boolean takePhotoi) throws Exception {
         if(isWithinBounds(xi, yi)) {
             x = xi;

@@ -27,6 +27,40 @@ public class TuplesToLocations {
 
     }
 
+    public static boolean addPhoto( float x, float y , ArrayList<Tuple> pointsOnDisplay){
+
+        final float offset = 5.0f;
+        float dX, dY;
+
+        for(int i = 0; i < pointsOnDisplay.size(); ++i){
+
+            dX = pointsOnDisplay.get(i).x;
+            dY = pointsOnDisplay.get(i).y;
+
+            if(Math.abs(dX - x) <= offset && Math.abs(dY - y) <= offset){
+
+                for(int i2 = 0; i2 < locations.size(); ++i2){
+
+                    if(dX == locations.get(i).getX() && dY == locations.get(i).getY())
+                        locations.get(i).takePhoto();
+                    else{
+
+                       try {
+                           locations.add(new Location( dX, dY, true ));
+                       } catch (Exception e) {
+                           e.printStackTrace();
+                       }
+
+                     }
+                }
+                return true;
+
+            }
+        }
+
+        return false;
+    }
+
     public static void setTuples(ArrayList<Tuple> locs){
 
         for(int i = 0; i < locs.size(); ++i){
@@ -34,7 +68,7 @@ public class TuplesToLocations {
             if(i % 20 == 0){
 
                 try {
-                    locations.add(new Location(absToRelX(locs.get(i).x), absToRelY(locs.get(i).y),locs.get(i).takePhoto));
+                    locations.add(new Location(absToRelX(locs.get(i).x), absToRelY(locs.get(i).y)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

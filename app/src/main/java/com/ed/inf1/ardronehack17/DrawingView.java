@@ -23,12 +23,11 @@ import java.util.ArrayList;
 
 class Tuple{
     float x,y;
-    public boolean takePhoto;
 
     public Tuple(float x, float y){
         this.x = x;
         this.y = y;
-        takePhoto = false;
+
     }
 }
 
@@ -101,11 +100,21 @@ public class DrawingView extends View {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN://
-                    if(drawingAllowed || takingPhotoPoints)
+                    if(drawingAllowed)
                         drawPath.moveTo(touchX, touchY);
+
+                    if(takingPhotoPoints)
+                        if( TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay)){
+
+                            drawPath.moveTo(touchX, touchY);
+
+                        }
+
+
+
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    if(drawingAllowed  || takingPhotoPoints)
+                    if(drawingAllowed)
                         drawPath.lineTo(touchX, touchY);
                     break;
                 case MotionEvent.ACTION_UP:
@@ -125,6 +134,7 @@ public class DrawingView extends View {
 
                                         Toast.makeText(getContext(), "Select photo points!", Toast.LENGTH_SHORT).show();
                                         drawPaint.setColor(new Color().argb(255,255,0,0));
+                                        drawPaint.setStrokeWidth(30);
                                         takingPhotoPoints = true;
 
                                     }
@@ -149,7 +159,7 @@ public class DrawingView extends View {
                     return false;
             }
 
-            invalidate();////
+            invalidate();
             return true;
         }
 }
