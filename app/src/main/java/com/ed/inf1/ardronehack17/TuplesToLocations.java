@@ -33,7 +33,11 @@ public class TuplesToLocations {
 
             if(i % 20 == 0){
 
-                locations.add(new Location(absToRelX(locs.get(i).x), absToRelY(locs.get(i).y),locs.get(i).takePhoto));
+                try {
+                    locations.add(new Location(absToRelX(locs.get(i).x), absToRelY(locs.get(i).y),locs.get(i).takePhoto));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 

@@ -9,13 +9,6 @@ package com.ed.inf1.ardronehack17;
  * MAX_BOUND = Location(100, 100)
  */
 
-
-/*
-
-Change everything to float!!!
-
- */
-
 public class Location {
     private float x;
     private float y;
