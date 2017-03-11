@@ -5,7 +5,7 @@ package com.ed.inf1.ardronehack17;
  */
 
 public class Direction {
-    private static int startx, starty, roll, pitch, yaw, x1, y1;
+    private static int roll, pitch, yaw, x1, y1;
     public static int[] Move (int x,int y,int startx, int starty){
             x1 = Math.abs(startx-x);
             y1 = Math.abs(starty-y);
