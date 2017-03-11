@@ -75,7 +75,7 @@ public class DrawingView extends View {
                     return false;
             }
 
-            invalidate();//
+            invalidate();////
             return true;
         }
 }
