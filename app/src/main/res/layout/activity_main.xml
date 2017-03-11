@@ -9,9 +9,9 @@
         android:id="@+id/basic_control_button"
         android:text="Basic Control"
         android:textSize="40sp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="227dp"
+        android:layout_marginTop="47dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
