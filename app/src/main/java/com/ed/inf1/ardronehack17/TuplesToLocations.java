@@ -9,6 +9,21 @@ import  android.graphics.Point;
  * Created by milos on 3/11/17.
  */
 
+class TuplesResult{
+
+    public float x,y;
+    public boolean onLine;
+
+    public TuplesResult(float x,float y, boolean onLine){
+
+        this.x = x;
+        this.y = y;
+        this.onLine = onLine;
+
+    }
+
+}
+
 public class TuplesToLocations {
 
     private static final int SAMPLING_FREQUENCY = 20;
@@ -16,6 +31,9 @@ public class TuplesToLocations {
     private static int maxY;
     private static ArrayList<Location> locations;
 
+    public static ArrayList<Location> getLocations(){
+        return locations;
+    }
 
     public static void init(WindowManager vm){
 
@@ -29,9 +47,9 @@ public class TuplesToLocations {
 
     }
 
-    public static boolean addPhoto( float x, float y , ArrayList<Tuple> pointsOnDisplay){
+    public static TuplesResult addPhoto( float x, float y , ArrayList<Tuple> pointsOnDisplay){
 
-        final float offset = 20.0f;
+        final float offset = 35.0f;
         float dX, dY;
 
         for(int i = 0; i < pointsOnDisplay.size(); ++i){
@@ -55,12 +73,12 @@ public class TuplesToLocations {
 
                      }
                 }
-                return true;
+                return new TuplesResult(dX,dY,true);
 
             }
         }
 
-        return false;
+        return new TuplesResult(0,0,false);
     }
 
     public static void setTuples(ArrayList<Tuple> locs){

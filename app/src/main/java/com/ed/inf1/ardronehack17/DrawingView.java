@@ -13,6 +13,9 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.widget.Toast;
 import android.os.Handler;
+import java.lang.Runnable;
+
+
 
 /*
 
@@ -34,6 +37,8 @@ class Tuple{
 
 public class DrawingView extends View {
 
+    private Handler handler;
+    private Runnable runnable;
     private ArrayList<Tuple> pointsOnDisplay;
 
     private boolean drawingAllowed;
@@ -44,12 +49,23 @@ public class DrawingView extends View {
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
 
+
     public DrawingView(Context context, AttributeSet attrs){
         super(context, attrs);
         setupDrawing();
     }
 
     private void setupDrawing(){
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            public void run() {
+
+                takingPhotoPoints = false;
+                SpyStart.start(TuplesToLocations.getLocations());
+            }
+        };
+
 
         drawingAllowed = true;
         takingPhotoPoints = false;
@@ -66,6 +82,7 @@ public class DrawingView extends View {
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
         pointsOnDisplay = new ArrayList<Tuple>();
+
 
     }
 
@@ -103,14 +120,16 @@ public class DrawingView extends View {
                     if(drawingAllowed)
                         drawPath.moveTo(touchX, touchY);
 
-                    if(takingPhotoPoints)
-                        if( TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay)){
+                    if(takingPhotoPoints) {
 
-                            drawPath.addCircle(touchX, touchY, 0.3f, Path.Direction.CW);
+                        TuplesResult tr = TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay);
+                        if(tr.onLine){
 
-
+                            drawPath.addCircle(tr.x, tr.y, 10f, Path.Direction.CW);
+                            handler.removeCallbacks(runnable);
+                            handler.postDelayed(runnable, 2000);
                         }
-
+                    }
 
 
                     break;
@@ -128,7 +147,8 @@ public class DrawingView extends View {
                         this.drawingAllowed = false;
 
                         new AlertDialog.Builder(getContext())
-                                .setTitle("What to do next")
+                                .setTitle(
+                                        "What to do next")
                                 .setMessage("Do you want to add photo points?")
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
@@ -136,18 +156,9 @@ public class DrawingView extends View {
                                         Toast.makeText(getContext(), "Select photo points!", Toast.LENGTH_SHORT).show();
                                         drawPaint.setColor(new Color().argb(255,255,0,0));
                                         drawPaint.setStrokeWidth(30);
-                                        drawPaint.setStyle(Paint.Style.FILL);
-                                   //     canvasPaint.setStyle(Paint.Style.FILL);
+                                        canvasPaint.setStyle(Paint.Style.FILL);
                                         takingPhotoPoints = true;
 
-                                        /*Handler handler = new Handler();
-                                        Runnable runnable = new Runnable(){
-                                        public void run() {
-
-
-
-                                        }
-                                        };*/
 
                                     }
                                 })
@@ -160,8 +171,6 @@ public class DrawingView extends View {
                                 .show();
 
                     }else{ //photo Taking
-
-
 
                     }
 
