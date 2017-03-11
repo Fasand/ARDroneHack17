@@ -62,7 +62,6 @@ public class DrawingView extends View {
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
 
-
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
         pointsOnDisplay = new ArrayList<Tuple>();
@@ -106,7 +105,8 @@ public class DrawingView extends View {
                     if(takingPhotoPoints)
                         if( TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay)){
 
-                            drawPath.moveTo(touchX, touchY);
+                            drawPath.addCircle(touchX, touchY, 0.3f, Path.Direction.CW);
+
 
                         }
 

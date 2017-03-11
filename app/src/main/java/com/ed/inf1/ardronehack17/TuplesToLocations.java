@@ -41,8 +41,8 @@ public class TuplesToLocations {
 
                 for(int i2 = 0; i2 < locations.size(); ++i2){
 
-                    if(dX == locations.get(i).getX() && dY == locations.get(i).getY())
-                        locations.get(i).takePhoto();
+                    if(dX == locations.get(i2).getX() && dY == locations.get(i2).getY())
+                        locations.get(i2).takePhoto();
                     else{
 
                        try {
