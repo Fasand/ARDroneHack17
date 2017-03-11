@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
 import android.widget.Toast;
+import android.os.Handler;
 
 /*
 
@@ -136,6 +137,15 @@ public class DrawingView extends View {
                                         drawPaint.setColor(new Color().argb(255,255,0,0));
                                         drawPaint.setStrokeWidth(30);
                                         takingPhotoPoints = true;
+
+                                        /*Handler handler = new Handler();
+                                        Runnable runnable = new Runnable(){
+                                        public void run() {
+
+
+
+                                        }
+                                        };*/
 
                                     }
                                 })
