@@ -9,24 +9,45 @@ import java.net.URLConnection;
 import java.util.Arrays;
 
 public class JavaToHttp {
-    {
-        try
+        public void init(){
 
-        {
-            String lengthangle = URLEncoder.encode(Arrays.toString(SpyStart.getDirections().toArray()), "UTF-8");
-            URL url = new URL("http://10.99.154.94:3000");
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
-            OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("path=" + lengthangle);
-            out.close();
-        } catch (MalformedURLException ex1) {
-            System.out.println("HOW DID THIS HAPPEN");
-        } catch (UnsupportedOperationException ex2) {
-            System.out.println("HOW DID THIS HAPPEN");
-        } catch (IOException ex3) {
-            System.out.println("HOW DID THIS HAPPEN");
+        String lengthangle = null;
+            try {
+            lengthangle = URLEncoder.encode(Arrays.toString(SpyStart.getDirections().toArray()), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
-
+        URL url = null;
+        try {
+            url = new URL("http://10.99.154.94:3000");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        URLConnection connection = null;
+        try {
+            connection = url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        connection.setDoOutput(true);
+        OutputStreamWriter out = null;
+        try {
+            out = new OutputStreamWriter(connection.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.write("path=" + lengthangle);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
 }
