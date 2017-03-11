@@ -1,3 +1,5 @@
+package com.ed.inf1.ardronehack17;
+
 /**
  * Created by fasand on 11/03/17.
  */
@@ -5,6 +7,13 @@
 /**
  * MIN_BOUND = Location(0, 0)
  * MAX_BOUND = Location(100, 100)
+ */
+
+
+/*
+
+Change everything to float!!!
+
  */
 
 public class Location {

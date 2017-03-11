@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TuplesToLocations.init( getWindowManager());
+
         Button spyButton = (Button) findViewById(R.id.spy_button );
         spyButton.setOnClickListener(new OnClickListener() {
             @Override

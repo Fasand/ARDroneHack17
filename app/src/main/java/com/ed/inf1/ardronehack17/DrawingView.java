@@ -11,7 +11,28 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
 
+/*
+
+ENDED HERE, NEED TO ADD PHOTO POINTS
+
+ */
+
+import java.util.ArrayList;
+
+class Tuple{
+    float x,y;
+    public boolean takePhoto;
+
+    public Tuple(float x, float y){
+        this.x = x;
+        this.y = y;
+        takePhoto = false;
+    }
+}
+
 public class DrawingView extends View {
+
+    private ArrayList<Tuple> tuples;
 
     private boolean drawingAllowed;
 
@@ -69,6 +90,8 @@ public class DrawingView extends View {
             float touchX = event.getX();
             float touchY = event.getY();
 
+            tuples.add(new Tuple(touchX, touchY));
+
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN://
 
@@ -81,15 +104,19 @@ public class DrawingView extends View {
                     drawCanvas.drawPath(drawPath, drawPaint);
                     drawPath.reset();
 
+                    this.drawingAllowed = false;
+
                     new AlertDialog.Builder(getContext())
                             .setTitle("What to do next")
                             .setMessage("Do you want to add photo points?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // continue with delete
+
+
+
                                 }
                             })
-                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // do nothing
                                 }
@@ -98,7 +125,7 @@ public class DrawingView extends View {
                             .show();
 
 
-                    this.drawingAllowed = false;
+
 
                     break;
                 default:
