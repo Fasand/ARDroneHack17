@@ -14,11 +14,11 @@ public class JavaToHttp {
 
         {
             String lengthangle = URLEncoder.encode(Arrays.toString(SpyStart.getDirections().toArray()), "UTF-8");
-            URL url = new URL("www.example.com");
+            URL url = new URL("http://10.99.154.94:3000");
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("string=" + lengthangle);
+            out.write("path=" + lengthangle);
             out.close();
         } catch (MalformedURLException ex1) {
             System.out.println("HOW DID THIS HAPPEN");
