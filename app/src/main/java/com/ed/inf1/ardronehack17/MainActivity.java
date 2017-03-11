@@ -14,9 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.basic_control_button );
-
-        button.setOnClickListener(new OnClickListener() {
+        Button spyButton = (Button) findViewById(R.id.spy_button );
+        spyButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -24,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+/*
+        Button basicButton = (Button) findViewById(R.id.basic_control_button );
+        basicButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setContentView(R.layout.);
+
+            }
+        });*/
+
+
 
     }
 
