@@ -18,28 +18,31 @@ public class Direction {
         if (y<starty)
             pitch = ((x1+y1)/y1)+1;
         int[] directions =new float[]{roll, pitch,wait};*/
-    private static float angle, x , y;
+    private static float angle, x2 ,y2;
+    private static double x, y;
     public static float[] TurnTime(float startx, float starty,float x1,float y1){
-        x = x1-startx;
-        y = y1-starty;
-        float length = Math.sqrt(x*x+y*y);
+        x2 = x1-startx;
+        y2 = y1-starty;
+        x = (double) x1;
+        y = (double) y1;
+        float length = (float) Math.sqrt(x*x+y*y);
         if (x >= 0) {
             if (y >= 0) {
-                float angle = 90-(Math.atan2(y, x) / Math.PI * 180);
+                float angle = (float) (90-(Math.atan2(y, x) / Math.PI * 180));
                 System.out.println(angle);
             }
             if (y < 0) {
-                float angle = 90-(Math.atan2(y, x) / Math.PI * 180);
+                float angle = (float) (90-(Math.atan2(y, x) / Math.PI * 180));
                 System.out.println(angle);
             }
         }
         if (x < 0) {
             if (y >= 0) {
-                float angle = 450-(Math.atan2(y, x) / Math.PI * 180);
+                float angle = (float) (450-(Math.atan2(y, x) / Math.PI * 180));
                 System.out.println(angle);
             }
             if (y < 0) {
-                float angle = 90-(Math.atan2(y, x) / Math.PI * 180);
+                float angle = (float) (90-(Math.atan2(y, x) / Math.PI * 180));
                 System.out.println(angle);
             }
         }
