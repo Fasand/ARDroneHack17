@@ -68,7 +68,7 @@ public class DrawingView extends View {
             public void run() {
 
                 takingPhotoPoints = false;
-                SpyStart.start( TuplesToLocations.getCorrectedLocations());
+                new SpyStart().start( TuplesToLocations.getCorrectedLocations());
             }
         };
 

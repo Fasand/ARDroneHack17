@@ -102,7 +102,7 @@ public class TuplesToLocations {
     }
 
     public static ArrayList<Location> getCorrectedLocations(){
-//THIS IS SHITTY CODE
+    //THIS IS SHITTY CODE
         correctedLocations = new ArrayList<Location>();
         ArrayList<Tuple> tuples = DrawingView.getTuples();
 
