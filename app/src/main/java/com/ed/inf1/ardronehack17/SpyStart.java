@@ -11,7 +11,7 @@ public class SpyStart {
 
     private static float[][] locationFloats;
 
-    private static float[][] getLocationFloats(){
+    public static float[][] getLocationFloats(){
 
         return locationFloats;
 
