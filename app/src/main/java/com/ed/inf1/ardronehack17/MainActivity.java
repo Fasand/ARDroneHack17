@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               Intent intent = new Intent(getApplicationContext(), PathDraw.class);
-               startActivity(intent);//
+               setContentView(R.layout.drawing_layout);
 
             }
         });
