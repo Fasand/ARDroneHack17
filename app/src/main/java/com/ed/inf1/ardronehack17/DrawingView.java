@@ -41,7 +41,6 @@ public class DrawingView extends View {
 
     private Path drawPath;
     private Paint drawPaint, canvasPaint;
-    private int paintColor = 0xFF660000;
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
 
@@ -102,11 +101,11 @@ public class DrawingView extends View {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN://
-                    if(drawingAllowed)
+                    if(drawingAllowed || takingPhotoPoints)
                         drawPath.moveTo(touchX, touchY);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    if(drawingAllowed)
+                    if(drawingAllowed  || takingPhotoPoints)
                         drawPath.lineTo(touchX, touchY);
                     break;
                 case MotionEvent.ACTION_UP:
