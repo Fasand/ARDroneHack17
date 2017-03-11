@@ -62,6 +62,8 @@ public class DrawingView extends View {
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
+        pointsOnDisplay = new ArrayList<Tuple>();
+
     }
 
     @Override
