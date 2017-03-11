@@ -3,6 +3,7 @@ package com.ed.inf1.ardronehack17;
 import android.app.AlertDialog;
 import  android.content.DialogInterface;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 /*
 
@@ -35,6 +37,7 @@ public class DrawingView extends View {
     private ArrayList<Tuple> pointsOnDisplay;
 
     private boolean drawingAllowed;
+    private boolean takingPhotoPoints;
 
     private Path drawPath;
     private Paint drawPaint, canvasPaint;
@@ -50,6 +53,7 @@ public class DrawingView extends View {
     private void setupDrawing(){
 
         drawingAllowed = true;
+        takingPhotoPoints = false;
 
         drawPath = new Path();
         drawPaint = new Paint();
@@ -59,6 +63,7 @@ public class DrawingView extends View {
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
+
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
@@ -86,47 +91,58 @@ public class DrawingView extends View {
         @Override
         public boolean onTouchEvent(MotionEvent event) {
 
-            if(!drawingAllowed)
+            if(!drawingAllowed && !takingPhotoPoints)
                 return false;
 
             float touchX = event.getX();
             float touchY = event.getY();
 
-            pointsOnDisplay.add(new Tuple(touchX, touchY));
+            if(drawingAllowed)
+                pointsOnDisplay.add(new Tuple(touchX, touchY));
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN://
-
-                    drawPath.moveTo(touchX, touchY);
+                    if(drawingAllowed)
+                        drawPath.moveTo(touchX, touchY);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    drawPath.lineTo(touchX, touchY);
+                    if(drawingAllowed)
+                        drawPath.lineTo(touchX, touchY);
                     break;
                 case MotionEvent.ACTION_UP:
-                    drawCanvas.drawPath(drawPath, drawPaint);
-                    drawPath.reset();
 
-                    this.drawingAllowed = false;
+                    if(drawingAllowed) {
 
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("What to do next")
-                            .setMessage("Do you want to add photo points?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                        drawCanvas.drawPath(drawPath, drawPaint);
+                        drawPath.reset();
+
+                        this.drawingAllowed = false;
+
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("What to do next")
+                                .setMessage("Do you want to add photo points?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        Toast.makeText(getContext(), "Select photo points!", Toast.LENGTH_SHORT).show();
+                                        drawPaint.setColor(new Color().argb(255,255,0,0));
+                                        takingPhotoPoints = true;
+
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // do nothing
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
+                    }else{ //photo Taking
 
 
 
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // do nothing
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-
-
+                    }
 
 
                     break;
