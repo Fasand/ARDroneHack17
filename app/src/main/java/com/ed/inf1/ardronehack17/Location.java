@@ -17,15 +17,15 @@ Change everything to float!!!
  */
 
 public class Location {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     private boolean takePhoto;
 
     // Inclusive ==> can have location (0,0) or (100,100)
     private int MIN_BOUND = 0;
     private int MAX_BOUND = 100;
 
-    public Location(int xi, int yi) throws Exception {
+    public Location(float xi, float yi) throws Exception {
         if(isWithinBounds(xi, yi)) {
             x = xi;
             y = yi;
@@ -33,7 +33,7 @@ public class Location {
         } else throw new Exception("Location out of bounds!");
     }
 
-    public Location(int xi, int yi, boolean takePhotoi) throws Exception {
+    public Location(float xi, float yi, boolean takePhotoi) throws Exception {
         if(isWithinBounds(xi, yi)) {
             x = xi;
             y = yi;
@@ -41,11 +41,11 @@ public class Location {
         } else throw new Exception("Location out of bounds! x="+xi+"; y="+yi);
     }
 
-    public int getX() {
+    public float getX() {
         return this.x;
     }
 
-    public int getY() {
+    public float getY() {
         return this.y;
     }
 
@@ -53,7 +53,7 @@ public class Location {
         return takePhoto;
     }
 
-    private boolean isWithinBounds(int xi, int yi) {
+    private boolean isWithinBounds(float xi, float yi) {
         if(xi > MAX_BOUND || xi < MIN_BOUND || yi > MAX_BOUND || yi < MIN_BOUND) {
             return false;
         }

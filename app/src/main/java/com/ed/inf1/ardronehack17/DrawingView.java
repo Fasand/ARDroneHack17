@@ -32,7 +32,7 @@ class Tuple{
 
 public class DrawingView extends View {
 
-    private ArrayList<Tuple> tuples;
+    private ArrayList<Tuple> pointsOnDisplay;
 
     private boolean drawingAllowed;
 
@@ -90,7 +90,7 @@ public class DrawingView extends View {
             float touchX = event.getX();
             float touchY = event.getY();
 
-            tuples.add(new Tuple(touchX, touchY));
+            pointsOnDisplay.add(new Tuple(touchX, touchY));
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN://
