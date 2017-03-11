@@ -107,7 +107,7 @@ public class DrawingView extends View {
                         if( TuplesToLocations.addPhoto(touchX, touchY, pointsOnDisplay)){
 
                             drawPath.addCircle(touchX, touchY, 0.3f, Path.Direction.CW);
-                            drawPath.setFillType(Path.FillType.EVEN_ODD);
+
 
                         }
 
@@ -136,6 +136,7 @@ public class DrawingView extends View {
                                         Toast.makeText(getContext(), "Select photo points!", Toast.LENGTH_SHORT).show();
                                         drawPaint.setColor(new Color().argb(255,255,0,0));
                                         drawPaint.setStrokeWidth(30);
+                                        canvasPaint.setStyle(Paint.Style.FILL);
                                         takingPhotoPoints = true;
 
                                         /*Handler handler = new Handler();
